@@ -14,7 +14,7 @@ const storeSchema = new mongoose.Schema({
 
     },
     tags: {
-        type: String,
+        type: [String],
         required: 'Please select aleast a tag.'
     }
 });
