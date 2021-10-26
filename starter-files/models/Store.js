@@ -13,7 +13,10 @@ const storeSchema = new mongoose.Schema({
         trim: true,
 
     },
-    tags: [String]
+    tags: {
+        type: String,
+        required: 'Please select aleast a tag.'
+    }
 });
 
 storeSchema.pre('save', function(next) {
