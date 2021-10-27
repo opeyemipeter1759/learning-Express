@@ -22,14 +22,18 @@ exports.createStore = async(req, res) => {
 exports.getStores = async(req, res) => {
     //query the database for a list if all the stores and extract the data from them.
     const stores = await Store.find();
-    res.render('stores', { title: 'stores', stores })
-}
-
-exports.editStore = async(req, res) => {
-    const store = await Store.findOne({ _id: req.params.id });
-    res.json(store)
-    res.render("editstore", {
-        title: `Edit ${store.name}`,
-        store
+    res.render('stores', {
+        title: 'stores',
+        stores
     })
 }
+
+
+exports.editStore = async(req, res) => {
+    // 1. Find the store given the ID
+    const store = await Store.findOne({ _id: req.params.id });
+    // 2. confirm they are the owner of the store
+    // TODO
+    // 3. Render out the edit form so the user can update their store
+    res.render('editstore', { title: `Edit ${store.name}`, store });
+};

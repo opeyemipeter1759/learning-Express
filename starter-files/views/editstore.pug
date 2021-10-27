@@ -4,5 +4,6 @@ include mixins/_storeForm
 
 block  content 
     .inner
+    //- pre= h.dump(store)
     h1 #{title} 
-    +storeForm()    
+    +storeForm(store)    
