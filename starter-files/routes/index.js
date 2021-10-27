@@ -4,8 +4,9 @@ const storeController = require('../controllers/storeController.js');
 const { catchErrors } = require('../handlers/errorHandlers.js');
 
 
-
-router.get('/', storeController.homePage);
+router.get("/stores", storeController.getStores);
+router.get('/', storeController.getStores);
+router.get('/add', storeController.addStore);
 router.get('/add', storeController.addStore);
 router.post('/add', catchErrors(storeController.createStore));
 module.exports = router;
