@@ -14,6 +14,26 @@ const storeSchema = new mongoose.Schema({
 
     },
     tags: [String],
+    Create: {
+        type: Date,
+        default: Date.now,
+    },
+    location: {
+        type: {
+            type: String,
+            default: 'Point'
+        },
+        coordinates: [{
+            type: Number,
+            required: 'You must Supply Cordinates!'
+        }],
+        address: {
+            type: String,
+            required: 'You must Supply an address!'
+        }
+    }
+
+
 
 });
 
