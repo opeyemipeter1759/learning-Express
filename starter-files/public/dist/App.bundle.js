@@ -84,8 +84,9 @@ function autocomplete(input, latInput, lngInput) {
     dropdown.addListener('place_changed', function () {
         var place = dropdown.getPlace();
         console.log(place);
-        latInput.value = place.geometry.latitude.lat();
-        lngInput.value = place.geometry.longitude.lng();
+        latInput.value = place.geometry.location.lat();
+        console.log(latInput.value);
+        lngInput.value = place.geometry.location.lng();
 
         input.on('keydown', function (event) {
             if (e, keyCode === 13) {
