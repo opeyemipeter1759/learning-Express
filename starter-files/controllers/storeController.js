@@ -1,8 +1,22 @@
-// exports.myMiddleware = (req, res, next) => {
-//     req.name = 'yes',
-//         next()}
 const mongoose = require('mongoose');
 const Store = mongoose.model("Store")
+const multer = require('multer');
+const multerOptions = {
+    storage: multer.memoryStorage(),
+    fileFilter(req, file, next) {
+        const isPhoto = file.mimetype.startsWith('image/');
+        if (
+            isPhoto
+        ) {
+            next(null, true)
+        } else {
+            next({ message: `That filetype is not allowed!` }, false)
+        }
+    }
+}
+
+
+
 exports.homePage = (req, res) => {
     // console.log(req.name);
     res.render('index')
@@ -12,6 +26,7 @@ exports.addStore = (req, res) => {
     res.render('editstore', { title: 'Add Store' })
 }
 
+exports.upload = multer(multerOptions).single('photo')
 exports.createStore = async(req, res) => {
     const store = await (new Store(req.body).save())
     req.flash('success', `Store ${store.name} Created, 
